@@ -95,7 +95,11 @@ btnGuardar.addEventListener('click', () => {
   let prome = promedio();
 
   hh.textContent = " Promedio "+ prome.toFixed(2);
-  
+   nombre.value = " ";
+  apellido.value = " ";
+  matricula.value = " ";
+  nota.value = " ";
+
   
   localStorage.setItem('datos', JSON.stringify(datosEstudiantes))
   var guardado = localStorage.getItem('datos')
