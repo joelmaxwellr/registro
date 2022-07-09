@@ -36,77 +36,39 @@ const addEstudiante = (nombre, apellido, matricula, nota) => {
   datosEstudiantes.push(estudiante1)
 }
 
-//console.log(datosEstudiantes.nombre);
-
-/* let crearTabla = function (lista) {
-  let stringTabla =
-    '<tr><th scope="col">#</th> <th scope="col">Nombre</th> <th scope="col">Apellido</th> <th scope="col">Matrícula</th><th scope="col">Nota</th></tr>'
-  for (let tarea of lista) {
-    let fila = '<tr> <td>'
-    fila += datosEstudiantes.nombre
-
-    fila += '</td>'
-    fila += '</tr>'
-    stringTabla += fila
-    console.log(stringTabla)
-  }
-  return stringTabla
-}
-document.getElementById('tablaEstudiantes').innerHTML = crearTabla(
-  datosEstudiantes,
-)
- */
 
 let tablaEstudiantes = document.getElementById('tablaEstudiantes')
 let cuerpoTabla = document.getElementById('tbody')
 
-/* datosEstudiantes.forEach((p) => {
-  let fila = document.createElement('tr')
 
-  let td = document.createElement('td')
-  td.innerText = p.nombre
-  fila.appendChild(td)
-
-  td = document.createElement('td')
-  td.innerText = p.apellido
-  fila.appendChild(td)
-
-  td = document.createElement('td')
-  td.innerText = p.matricula
-  fila.appendChild(td)
-
-  td = document.createElement('td')
-  td.innerText = p.nota
-  fila.appendChild(td)
-
-  cuerpoTabla.appendChild(fila)
-
-  cuerpoTabla.appendChild(fila)
-})
- */
 tablaEstudiantes.appendChild(cuerpoTabla)
 btnGuardar.addEventListener('click', () => {
-  addEstudiante(nombre.value, apellido.value, matricula.value, nota.value)
-  let ultimoEstudiante = []
-  ultimoEstudiante.push(datosEstudiantes[datosEstudiantes.length - 1])
-  console.log(datosEstudiantes[datosEstudiantes.length - 1])
-
-  imprimirTabla(ultimoEstudiante)
-  let prome = promedio();
-
-  hh.textContent = " Promedio "+ prome.toFixed(2);
-   nombre.value = " ";
-  apellido.value = " ";
-  matricula.value = " ";
-  nota.value = " ";
-
+  if(nombre.value == "" || apellido.value == "" || matricula.value == "" || nombre.value == ""){
+    alert("Campos vacios")
+  }else{
+    
+    addEstudiante(nombre.value, apellido.value, matricula.value, nota.value)
+    let ultimoEstudiante = []
+    ultimoEstudiante.push(datosEstudiantes[datosEstudiantes.length - 1])
+    console.log(datosEstudiantes[datosEstudiantes.length - 1])
+    nombre.value = " ";
+    apellido.value = " ";
+    matricula.value = " ";
+    nota.value = " ";
+    
+    
+    imprimirTabla(ultimoEstudiante)
+    let prome = promedio()
+    
+    hh.textContent = ' Promedio ' + prome.toFixed(2)
+   
   
-  localStorage.setItem('datos', JSON.stringify(datosEstudiantes))
-  var guardado = localStorage.getItem('datos')
-
-  console.log('objetoObtenido: ', JSON.parse(guardado))
+    localStorage.setItem('datos', JSON.stringify(datosEstudiantes))
+    var guardado = localStorage.getItem('datos')
+  
+    console.log('objetoObtenido: ', JSON.parse(guardado))
+  }
 })
-
 
 const imprimirTabla = (datosEstudiantes) => {
   datosEstudiantes.forEach((p) => {
@@ -128,29 +90,24 @@ const imprimirTabla = (datosEstudiantes) => {
     td.innerText = p.nota
     fila.appendChild(td)
 
-   
-    
     cuerpoTabla.appendChild(fila)
 
     cuerpoTabla.appendChild(fila)
   })
-  
-  
- 
 
   tablaEstudiantes.appendChild(cuerpoTabla)
 }
 
 function promedio() {
-  let tot = 0;
+  let tot = 0
   for (x of datosEstudiantes) {
-   // console.log(tot)
-    tot = tot + parseFloat(x.nota);
-   // console.log(tot)
+    // console.log(tot)
+    tot = tot + parseFloat(x.nota)
+    // console.log(tot)
   }
-  let resultado = tot / datosEstudiantes.length;
+  let resultado = tot / datosEstudiantes.length
   console.log(resultado)
-  return resultado;
+  return resultado
 }
 
 //console.log(promedio())
