@@ -3,7 +3,7 @@ let apellido = document.getElementById('apellido')
 let matricula = document.getElementById('matricula')
 let nota = document.getElementById('nota')
 let btnGuardar = document.getElementById('guardar')
-let hh = document.getElementById('hh')
+let h1 = document.getElementById('h1')
 
 class Estudiante {
   constructor(nombre, apellido, matricula, nota) {
@@ -36,36 +36,40 @@ const addEstudiante = (nombre, apellido, matricula, nota) => {
   datosEstudiantes.push(estudiante1)
 }
 
-
 let tablaEstudiantes = document.getElementById('tablaEstudiantes')
 let cuerpoTabla = document.getElementById('tbody')
 
-
 tablaEstudiantes.appendChild(cuerpoTabla)
 btnGuardar.addEventListener('click', () => {
-  if(nombre.value == "" || apellido.value == "" || matricula.value == "" || nota.value == ""){
-    alert("Campos vacios")
-  }else{
-    
+  if (
+    nombre.value == '' ||
+    apellido.value == '' ||
+    matricula.value == '' ||
+    nota.value == ''
+  ) {
+    alert('Campos vacios')
+  } else if (nota.value > 100 || nota.value < 0) {
+    alert('Introduzca un valor entre 0 y 100')
+  } else {
     addEstudiante(nombre.value, apellido.value, matricula.value, nota.value)
+
     let ultimoEstudiante = []
     ultimoEstudiante.push(datosEstudiantes[datosEstudiantes.length - 1])
     console.log(datosEstudiantes[datosEstudiantes.length - 1])
-    nombre.value = " ";
-    apellido.value = " ";
-    matricula.value = " ";
-    nota.value = " ";
-    
-    
+
+    nombre.value = ' '
+    apellido.value = ' '
+    matricula.value = ' '
+    nota.value = ' '
+
     imprimirTabla(ultimoEstudiante)
     let prome = promedio()
-    
-    hh.textContent = ' Promedio ' + prome.toFixed(2)
-   
-  
+
+    h1.textContent = ' Promedio ' + prome.toFixed(2)
+
     localStorage.setItem('datos', JSON.stringify(datosEstudiantes))
     var guardado = localStorage.getItem('datos')
-  
+
     console.log('objetoObtenido: ', JSON.parse(guardado))
   }
 })
@@ -98,7 +102,7 @@ const imprimirTabla = (datosEstudiantes) => {
   tablaEstudiantes.appendChild(cuerpoTabla)
 }
 
-function promedio() {
+const promedio = () => {
   let tot = 0
   for (x of datosEstudiantes) {
     // console.log(tot)
