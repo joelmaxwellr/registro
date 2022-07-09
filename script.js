@@ -43,7 +43,7 @@ let cuerpoTabla = document.getElementById('tbody')
 
 tablaEstudiantes.appendChild(cuerpoTabla)
 btnGuardar.addEventListener('click', () => {
-  if(nombre.value == "" || apellido.value == "" || matricula.value == "" || nombre.value == ""){
+  if(nombre.value == "" || apellido.value == "" || matricula.value == "" || nota.value == ""){
     alert("Campos vacios")
   }else{
     
