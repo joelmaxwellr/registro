@@ -16,6 +16,7 @@ class Estudiante {
   }
 }
 
+
 datosEstudiantes = [
   /*  {
     nombre: 'juan',
