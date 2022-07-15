@@ -91,7 +91,7 @@ const imprimirTabla = (a) => {
         })
         imprimirTabla(datosEstudiantes)
       
- borrarCampos()
+ //borrarCampos()
       })
 
       nombre.value = p.nombre
