@@ -8,6 +8,7 @@
 
   </head>
   <body>
+    
     <nav class="navbar bg-primary">
       <div class="container ">
         <span class="navbar-brand mb-0 h1 text-light">Registro</span>
@@ -20,26 +21,33 @@
         <div class="col-6">
           <label for="exampleInputEmail1" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="nombre">
+      <br>
 
       <label for="exampleInputEmail1" class="form-label">Apellido</label>
       <input type="text" class="form-control" id="apellido">
+ <br>
 
       <label for="exampleInputEmail1" class="form-label">Matrícula</label>
-      <input type="number" class="form-control" id="matricula">
+      <input type="text" class="form-control" id="matricula">
+ <br>
 
       <label for="exampleInputEmail1" class="form-label">Nota</label>
-      <input type="number" class="form-control" id="nota">
+      <input type="number" class="form-control" id="nota" min="1" max="99" >
       <br>
       <input type="button" class="btn btn-primary" value="Guardar" id="guardar">
-        </div>
+      <div id="actual"></div>
+       
+    </div>
         <div class="col-2">
           
         </div>
+        
         <div class="col-3">
           <img src="3534139.png" alt="aa" width="350" srcset="">
         </div>
-        <h1 id="foo">Datos de Estudiante</h1>
-        <h4 id="hh" class="d-flex flex-column align-items-end">Promedio 00.00</h4>
+        <br>
+        <h1 id="foo">Datos de Estudiantes</h1>
+        <h4 id="h1" class="d-flex flex-column align-items-end">Promedio 00.00</h4>
         <table class="table" id="tablaEstudiantes">
             <thead>
               <tr>
