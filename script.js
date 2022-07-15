@@ -81,7 +81,7 @@ const imprimirTabla = (a) => {
         console.log('Actualizacion enviada')
         cuerpoTabla.innerText = ''
 
-        // borrarCampos()
+         borrarCampos()
         let indice = datosEstudiantes.indexOf(p)
         datosEstudiantes.splice(indice, 1, {
           nombre: nombre.value,
