@@ -4,6 +4,12 @@ let matricula = document.getElementById('matricula')
 let nota = document.getElementById('nota')
 let btnGuardar = document.getElementById('guardar')
 let actualizar = document.getElementById('Actualizar')
+let actual = document.getElementById('actual')
+
+let inputActualizar = document.createElement('input')
+inputActualizar.type = 'button'
+inputActualizar.value = 'Actualizar'
+inputActualizar.classList.add('btn', 'btn-success', 'bg-success')
 
 let h1 = document.getElementById('h1')
 
@@ -15,7 +21,6 @@ class Estudiante {
     this.nota = nota
   }
 }
-
 
 datosEstudiantes = [
   /*  {
@@ -32,7 +37,6 @@ datosEstudiantes = [
   }, */
 ]
 
-
 const promedio = (datosEstudiantes) => {
   let tot = 0
   for (x of datosEstudiantes) {
@@ -41,7 +45,7 @@ const promedio = (datosEstudiantes) => {
   let resultado = tot / datosEstudiantes.length
   resultado = resultado.toFixed(2)
   //console.log(resultado)
-  return " Promedio " + resultado
+  return ' Promedio ' + resultado
 }
 
 const imprimirTabla = (a) => {
@@ -67,44 +71,52 @@ const imprimirTabla = (a) => {
     let inputEditar = document.createElement('input')
     inputEditar.type = 'button'
     inputEditar.value = 'Editar'
-    inputEditar.classList.add('btn', 'btn-success',"bg-success")
+    inputEditar.classList.add('btn', 'btn-success', 'bg-success')
 
     inputEditar.addEventListener('click', function () {
-      /* document.getElementById('nombre').value = p[0]
-      document.getElementById('apellido').value = p[1]
-      document.getElementById('matricula').value = p[2]
-      document.getElementById('nota').value = p[3] */
-      // document.getElementById('guardar').innerText = "Actualizar"
-      btnGuardar.value = true ? 'Actualizar':'btnGuardar'
-      btnGuardar.id = true  ? 'actualizar' : 'guardar'
+    
 
-     
-        
+      actual.append(inputActualizar)
+      inputActualizar.addEventListener('click', () => {
+        console.log('Actualizacion enviada')
+        cuerpoTabla.innerText = ''
+
+        // borrarCampos()
+        let indice = datosEstudiantes.indexOf(p)
+        datosEstudiantes.splice(indice, 1, {
+          nombre: nombre.value,
+          apellido: apellido.value,
+          matricula: matricula.value,
+          nota: nota.value,
+        })
+        imprimirTabla(datosEstudiantes)
+      
+ 
+      })
 
       nombre.value = p.nombre
       apellido.value = p.apellido
       matricula.value = p.matricula
       nota.value = p.nota
       nombre.focus()
-      
 
       console.log(this.parentElement.firstElementChild)
     })
-    //input.setAttribute('class', 'btn-success')
+   
     fila.appendChild(inputEditar)
 
     let inputEliminar = document.createElement('input')
     inputEliminar.type = 'button'
     inputEliminar.value = 'Eliminar'
-    inputEliminar.classList.add("btn", "btn-danger", "bg-danger")
+    inputEliminar.classList.add('btn', 'btn-danger', 'bg-danger')
 
     inputEliminar.addEventListener('click', function () {
       h1.textContent = promedio(a)
       h1.textContent = promedio(datosEstudiantes)
-      
+
       fila.remove()
     })
-    //input.setAttribute('class', 'btn-success')
+    
     fila.appendChild(inputEliminar)
 
     cuerpoTabla.appendChild(fila)
@@ -126,8 +138,7 @@ let cuerpoTabla = document.getElementById('tbody')
 
 tablaEstudiantes.appendChild(cuerpoTabla)
 btnGuardar.addEventListener('click', () => {
-  // datosEstudiantes.length = 0
-  //cuerpoTabla.remove();
+  console.log('llamo guardar')
 
   cuerpoTabla.innerText = ''
 
@@ -149,16 +160,17 @@ btnGuardar.addEventListener('click', () => {
 
     localStorage.setItem('datos', JSON.stringify(datosEstudiantes))
 
-    let guardado = localStorage.getItem('datos')
-    let local = JSON.parse(guardado)
-    imprimirTabla(datosEstudiantes)
-
+    //location.reload()
     //imprimirTabla(local);
     console.log(datosEstudiantes)
     // console.log(JSON.parse(guardado))
+
+    imprimirTabla(datosEstudiantes)
   }
 })
-
+//imprimirTabla(local)
+let guardado = localStorage.getItem('datos')
+let local = JSON.parse(guardado)
 
 /* document.addEventListener("DOMContentLoaded",(event)=>{
   
