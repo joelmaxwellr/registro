@@ -44,8 +44,8 @@ const promedio = (datosEstudiantes) => {
   }
   let resultado = tot / datosEstudiantes.length
   resultado = resultado.toFixed(2)
-  //console.log(resultado)
-  return ' Promedio ' + resultado
+  //console.log(resultado) ' Promedio ' + resultado
+  return h1.textContent = ' Promedio ' + resultado
 }
 
 const imprimirTabla = (a) => {
@@ -82,16 +82,19 @@ const imprimirTabla = (a) => {
         cuerpoTabla.innerText = ''
 
          
-        let indice = datosEstudiantes.indexOf(p)
+         indice = datosEstudiantes.indexOf(p)
         datosEstudiantes.splice(indice, 1, {
           nombre: nombre.value,
           apellido: apellido.value,
           matricula: matricula.value,
           nota: nota.value,
         })
+
+        promedio(datosEstudiantes)
         imprimirTabla(datosEstudiantes)
-      
- //borrarCampos()
+        inputActualizar.remove()
+        
+        borrarCampos()
       })
 
       nombre.value = p.nombre
@@ -111,10 +114,17 @@ const imprimirTabla = (a) => {
     inputEliminar.classList.add('btn', 'btn-danger', 'bg-danger')
 
     inputEliminar.addEventListener('click', function () {
-      h1.textContent = promedio(a)
+      cuerpoTabla.innerText = ''
+      console.log('eliminando')
+      /* h1.textContent = promedio(a)
       h1.textContent = promedio(datosEstudiantes)
-
-      fila.remove()
+ */
+      //fila.remove()
+      let indice = datosEstudiantes.indexOf(p)
+      datosEstudiantes.splice(indice, 1)
+      console.log(datosEstudiantes)
+      promedio(datosEstudiantes)
+      imprimirTabla(datosEstudiantes)
     })
     
     fila.appendChild(inputEliminar)
@@ -137,7 +147,8 @@ let tablaEstudiantes = document.getElementById('tablaEstudiantes')
 let cuerpoTabla = document.getElementById('tbody')
 
 tablaEstudiantes.appendChild(cuerpoTabla)
-btnGuardar.addEventListener('click', () => {
+btnGuardar.addEventListener('click', (e) => {
+  //e.preventDefault()
   console.log('llamo guardar')
 
   cuerpoTabla.innerText = ''
@@ -156,8 +167,8 @@ btnGuardar.addEventListener('click', () => {
 
     borrarCampos()
 
-    h1.textContent = promedio(datosEstudiantes)
-
+   // h1.textContent = promedio(datosEstudiantes)
+   promedio(datosEstudiantes)
     localStorage.setItem('datos', JSON.stringify(datosEstudiantes))
 
     //location.reload()
