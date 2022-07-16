@@ -44,8 +44,11 @@ const promedio = (datosEstudiantes) => {
   }
   let resultado = tot / datosEstudiantes.length
   resultado = resultado.toFixed(2)
+
+ let resultadoN = isNaN(resultado) ? "00.00" : resultado
+  console.log(resultadoN)
   //console.log(resultado) ' Promedio ' + resultado
-  return h1.textContent = ' Promedio ' + resultado
+  return (h1.textContent = ' Promedio ' + resultadoN)
 }
 
 const imprimirTabla = (a) => {
@@ -74,15 +77,12 @@ const imprimirTabla = (a) => {
     inputEditar.classList.add('btn', 'btn-success', 'bg-success')
 
     inputEditar.addEventListener('click', function () {
-    
-
       actual.append(inputActualizar)
       inputActualizar.addEventListener('click', () => {
         console.log('Actualizacion enviada')
         cuerpoTabla.innerText = ''
 
-         
-         indice = datosEstudiantes.indexOf(p)
+        indice = datosEstudiantes.indexOf(p)
         datosEstudiantes.splice(indice, 1, {
           nombre: nombre.value,
           apellido: apellido.value,
@@ -93,7 +93,7 @@ const imprimirTabla = (a) => {
         promedio(datosEstudiantes)
         imprimirTabla(datosEstudiantes)
         inputActualizar.remove()
-        
+
         borrarCampos()
       })
 
@@ -105,7 +105,7 @@ const imprimirTabla = (a) => {
 
       console.log(this.parentElement.firstElementChild)
     })
-   
+
     fila.appendChild(inputEditar)
 
     let inputEliminar = document.createElement('input')
@@ -116,17 +116,14 @@ const imprimirTabla = (a) => {
     inputEliminar.addEventListener('click', function () {
       cuerpoTabla.innerText = ''
       console.log('eliminando')
-      /* h1.textContent = promedio(a)
-      h1.textContent = promedio(datosEstudiantes)
- */
-      //fila.remove()
+  
       let indice = datosEstudiantes.indexOf(p)
       datosEstudiantes.splice(indice, 1)
       console.log(datosEstudiantes)
       promedio(datosEstudiantes)
       imprimirTabla(datosEstudiantes)
     })
-    
+
     fila.appendChild(inputEliminar)
 
     cuerpoTabla.appendChild(fila)
@@ -149,7 +146,7 @@ let cuerpoTabla = document.getElementById('tbody')
 tablaEstudiantes.appendChild(cuerpoTabla)
 btnGuardar.addEventListener('click', (e) => {
   //e.preventDefault()
-  console.log('llamo guardar')
+  console.log('guardando')
 
   cuerpoTabla.innerText = ''
 
@@ -167,8 +164,7 @@ btnGuardar.addEventListener('click', (e) => {
 
     borrarCampos()
 
-   // h1.textContent = promedio(datosEstudiantes)
-   promedio(datosEstudiantes)
+    promedio(datosEstudiantes)
     localStorage.setItem('datos', JSON.stringify(datosEstudiantes))
 
     //location.reload()
@@ -201,17 +197,3 @@ const borrarCampos = () => {
   nota.value = ''
   nombre.focus()
 }
-
-/* let inputEditar = document.createElement('input')
-inputEditar.type = 'button'
-inputEditar.value = 'editar'
-inputEditar.setAttribute('class', 'btn btn-danger')
-inputEditar.addEventListener('click', function () {
-  alert('Button is clicked')
-})
-//input.setAttribute('class', 'btn-success')
-document.body.appendChild(inputEditar)
- */
-
-//imprimirTabla(local)
-//console.log(promedio())
